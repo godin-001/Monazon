@@ -1,24 +1,12 @@
 import { BrowserProvider } from "ethers"
-import { defineChain } from "viem"
-
-export const monadTestnet = defineChain({
-  id: 10143,
-  name: "Monad Testnet",
-  nativeCurrency: { name: "MON", symbol: "MON", decimals: 18 },
-  rpcUrls: {
-    default: { http: ["https://testnet-rpc.monad.xyz"] },
-  },
-  blockExplorers: {
-    default: { name: "MonadScan", url: "https://testnet.monadscan.com" },
-  },
-})
 
 const MONAD_CHAIN_ID = 10143
 const MONAD_CHAIN_ID_HEX = "0x279F"
 
 const ADD_CHAIN_PARAMS = {
   chainId: MONAD_CHAIN_ID_HEX,
-  chainName: "Monad Testnet",
+
+    chainName: "Monad Testnet",
   rpcUrls: ["https://testnet-rpc.monad.xyz"],
   nativeCurrency: { name: "MON", symbol: "MON", decimals: 18 },
   blockExplorerUrls: ["https://testnet.monadscan.com"],
@@ -33,6 +21,7 @@ declare global {
 }
 
 export function getProvider(): BrowserProvider {
+
   if (typeof window === "undefined" || !window.ethereum) {
     throw new Error("window.ethereum no disponible")
   }
@@ -63,6 +52,7 @@ export async function ensureMonadNetwork(): Promise<void> {
     await ethereum.request({
       method: "wallet_switchEthereumChain",
       params: [{ chainId: MONAD_CHAIN_ID_HEX }],
-    })
+
+          })
   }
 }
